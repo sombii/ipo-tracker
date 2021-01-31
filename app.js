@@ -4,12 +4,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-// var mongoose = require("mongoose");
+var mongoose = require("mongoose");
 
 var indexRouter = require('./routes/index');
 var sharesRouter = require('./routes/shares');
 
 var app = express();
+
+//setup db connection
+mongoose.connect(process.env.DB_URI, {useUnifiedTopology: true, useNewUrlParser: true,});
+mongoose.connection.on('error', console.error.bind(console, 'db connection error'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

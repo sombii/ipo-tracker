@@ -25,4 +25,4 @@ ShareSchema.virtual("url")
     })
 
 
-module.exports = mongoose.model("Share", ShareSchema);
+module.exports = mongoose.model("share", ShareSchema);
