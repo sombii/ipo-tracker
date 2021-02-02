@@ -3,7 +3,8 @@ const {DateTime} = require("luxon");
 
 const CompanySchema = mongoose.Schema({
     name: {type: String, required: true},
-    established: {type: Date, default: Date.now}
+    established: {type: Date, default: Date.now},
+    scrip: {type: String, required: true},
 });
 
 CompanySchema.virtual("established_formatted")

@@ -9,9 +9,21 @@ exports.list_all = (req, res, next) => {
                 return next(err);
             }
             const com = company_list.map(c => {
-                return {name: c.name, established: c.established, established_formatted: c.established_formatted}
+                return ({...c._doc, established_formatted: c.established_formatted})
             })
-            res.send(com);
+            res.json(com);
+        });
+}
+
+//get a single company
+exports.get_single_company = (req, res, next) => {
+    Company.find({name: req.params.name})
+        .exec(function (err, company) {
+            if (err) {
+                return next(err);
+            }
+            const com = {...company, established_formatted: company.established_formatted}
+            res.json(com);
         });
 }
 
