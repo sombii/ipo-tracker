@@ -5,4 +5,4 @@ const CompanySchema = mongoose.Schema({
     established: {type: Date}
 });
 
-module.exports = mongoose.model("company", CompanySchema);
+module.exports = mongoose.model("Company", CompanySchema, "company");
