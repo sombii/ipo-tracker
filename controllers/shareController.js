@@ -15,7 +15,7 @@ exports.list_all_securities = function (req, res, next) {
 
 // list all individual issue types ipo fpo right on GET request
 exports.list_individual_issue_type = (req, res, next) => {
-    Share.find({issue_type: req.params.type})
+    Share.find({issue_type: req.params.type, share_type: "Shares"})
         .populate("company")
         .exec(function (err, individual_list) {
             if (err) {
