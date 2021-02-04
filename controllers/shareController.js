@@ -1,4 +1,4 @@
-var Share = require("../models/share");
+const Share = require("../models/share");
 const {body, validationResult} = require("express-validator");
 
 // list all securities on GET request

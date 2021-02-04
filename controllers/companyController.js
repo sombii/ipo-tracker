@@ -35,6 +35,9 @@ exports.create_new_company = [
 
     (req, res, next) => {
         const errors = validationResult(req);
+
+        //too lazy to check if company already exists, so not done
+
         const company = new Company({
             name: req.body.name,
             established: req.body.established

@@ -1,21 +1,22 @@
 require("dotenv").config();
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var mongoose = require("mongoose");
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const mongoose = require("mongoose");
 
 //work around for an issue
-var Company = require("./models/company")
-var Share = require("./models/share")
+const Company = require("./models/company")
+const Share = require("./models/share")
 //work around for an issue
 
-var indexRouter = require('./routes/index');
-var sharesRouter = require('./routes/shares');
-var companyRouter = require('./routes/companies')
+const indexRouter = require('./routes/index');
+const authRouter = require('./routes/auth');
+const sharesRouter = require('./routes/shares');
+const companyRouter = require('./routes/companies')
 
-var app = express();
+const app = express();
 
 //setup db connection
 mongoose.connect(process.env.DB_URI, {useUnifiedTopology: true, useNewUrlParser: true,}
@@ -35,6 +36,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/api/auth', authRouter);
 app.use('/api/securities', sharesRouter);
 app.use('/api/company', companyRouter);
 
